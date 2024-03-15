@@ -6,7 +6,15 @@ const withNextra = require("nextra")({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // any configs you need
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      type: "json",
+      options: { asJSON: true },
+      loader: "yaml-loader",
+    });
+    return config;
+  },
 };
 
 module.exports = withNextra(nextConfig);
