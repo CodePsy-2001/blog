@@ -4,7 +4,7 @@
         <description><![CDATA[Your Name]]></description>
         <link>https://yoursite.com</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 12 Mar 2024 07:05:55 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 15 Mar 2024 05:30:00 GMT</lastBuildDate>
         <atom:link href="https://yoursite.com/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[Markdown Examples]]></title>
@@ -12,7 +12,7 @@
             <link>/posts/markdown</link>
             <guid isPermaLink="true">/posts/markdown</guid>
             <category><![CDATA[web development]]></category>
-            <dc:creator><![CDATA[You]]></dc:creator>
+            <dc:creator><![CDATA[코드싸이]]></dc:creator>
             <pubDate>Thu, 18 Mar 2021 15:00:00 GMT</pubDate>
         </item>
         <item>
