@@ -5,21 +5,13 @@ date: 2024-03-11
 ---
 
 import { EmailIcon, GithubIcon } from "../components/ui/icons";
-import { Experience } from "../components/Experience";
+import { Career } from "../components/Experience";
 import { Tabs } from "nextra/components";
 
 # 소개
-항상 새로운 것을 발견하고 탐험하길 좋아합니다.<br />
-개발을 넘어 **해결해야 할 진짜 문제**가 무엇인지 고민합니다.<br />
-원하는 결과를 얻기 위해 최선의 방법을 찾아내고 실행합니다.
+**해결해야 할 진짜 문제**가 무엇인지 고민합니다.
 
-<a className="external" href="https://www.carepet.io">
-  {"케어펫"}
-</a>
-<a className="external" href="https://www.candypay.co.kr/">
-  {"캔디페이"}
-</a>
-개발의 테크리드를 맡았습니다.<br />
+[케어펫](https://www.carepet.io), [캔디페이](https://www.candypay.co.kr) 개발의 테크리드를 맡았습니다.<br />
 현재는 공군 입영 준비 중입니다.
 
 <p className="mt-1 flex gap-1.5">
@@ -64,33 +56,83 @@ import { Tabs } from "nextra/components";
 
 ---
 
-## Work Experience.
+## Work Experiences.
 
-### <u>캔디페이</u>, 테크리드
-
-### <u>케어펫</u>, 테크리드
-
-### <u>cb-kaar</u>, 학생연구원
-
-### <u>원펫</u>, 인턴
-
-<Experience
-  date="2021.06"
-  title="snake game with backend"
-  skills={["python", "flask", "mysql"]}
-  description={[
-    "처음으로 만든 백엔드 서버입니다.",
-    "게임에 점수 기록을 저장하고 불러오는 기능을 추가했습니다.",
-    "인턴 활동의 일부였습니다. 이후 백엔드 개발자로 정식 입사했습니다.!!",
-  ]}
+<Career
+  company="캔디페이"
+  href="https://www.candypay.co.kr"
+  position="테크리드"
+  period="2024.02 - 현재"
 />
+
+- 외주 관리
+
+<Career
+  company="케어펫"
+  href="https://www.carepet.io"
+  position="테크리드"
+  period="2022.07 - 2024.02"
+/>
+
+**[Monorepo 구축 및 팀 컨벤션 관리]**
+- 프로젝트의 복잡성 증가로 백엔드-프론트 간 코드베이스 공유의 필요성 인지.
+- Monorepo 도입 및 타입 공유로 백엔드와 프론트엔드의 병렬 개발 실현.
+- 내부 패키지 구조 정비로 3인 개발팀이 6개 프론트엔드 프로젝트를 개발 및 관리 가능.
+
+**[e-커머스 시스템 구축]**
+- 장바구니부터, 결제, 검증, 배송 관리까지의 백엔드 및 데이터베이스 설계 주도.
+- 월 매출 2,000만원 달성.
+
+**[CI/CD 프로세스 개선]**
+- EC2에서 Docker 및 Vercel로 배포 체계 전환, 롤백 용이성 향상 및 배포 시간 대폭 단축.
+- 4명의 팀원이 하루 10회 이상 빠르고 안정적인 배포 달성.
+
+**[검색 엔진 최적화 및 렌더 시간 개선]**
+- Next.js의 SSR 및 ISR 도입 및 사이트맵 정비로 구글, 네이버에서 상품 검색 시 최상단 노출.
+- SSR 최적화 및 백엔드 API 개선으로 페이지 로딩 시간 2.5초에서 1초로 단축.
+
+**[자체 퍼널 개발]**
+- 반려동물 등록 과정에서 고객 경험 개선 요구사항 파악.
+- `@toss/use-funnel` 라이브러리 Next.js 최신 버전에 호환되도록 재개발 및 적용.
+- 성과: 이탈률 30% 감소 및 오픈소스 라이브러리 `next-use-funnel` 공개.
+
+**[외부 인프라 연동]**
+- 토스페이먼츠, 카카오 알림톡, 디스코드 웹훅, 센드버드.
+- 메세지 큐 활용해 응답 시간 대폭 단축 및 비동기 통신 최적화.
+
+<Career
+  company="cb-kaar"
+  position="학생연구원"
+  period="2022.02 - 2022.05"
+/>
+
+- 강원대학교 하민수 교수 연구팀에서 학생연구원 자격으로 웹페이지 개발 참여
+- 1인 개발로 기획, 디자인, 개발, 배포 모두 담당
+
+<Career
+  company="원펫"
+  position="인턴"
+  period="2021.07 - 2021.11"
+/>
+
+- 강아지 MBTI 검사 서비스, 수의사 커뮤니티 개발
 
 ---
 
-## Projects.
+## Open Source Contributes.
+
+- next-use-funnel
+- Cataclysm-BN
 
 ---
 
 ## Education.
 - **세종영재고 (SASA)** 3기 졸업
 - **서강대학교 (Sogang University)** 심리학과 재학
+
+---
+
+## etc.
+- 가장 좋아하는 컴퓨터공학 서적은 "유닉스의 탄생"입니다.
+- 초기에는 디자이너 역할도 맡았습니다. 케어펫의 많은 페이지가 제 디자인입니다.
+- 세상에 도움이 되는 오픈소스 프로젝트를 만들고 싶습니다.
