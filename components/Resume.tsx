@@ -29,8 +29,8 @@ export const Experience = ({
   title?: string;
   descriptions: string[];
 }) => (
-  <>
-    {title ? <strong className="mt-7 block">{title}</strong> : null}
+  <div className="ml-6">
+    {title ? <strong className="mt-7 block">[{title}]</strong> : null}
     <ul className="mt-1">
       {descriptions.map((desc, idx) => (
         <li key={idx} className="my-0">
@@ -38,5 +38,5 @@ export const Experience = ({
         </li>
       ))}
     </ul>
-  </>
+  </div>
 );
