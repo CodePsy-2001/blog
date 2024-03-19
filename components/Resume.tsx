@@ -1,10 +1,3 @@
-export interface ExperienceProps {
-  date: string;
-  title: string;
-  skills: string[];
-  description: string[];
-}
-
 export const Career = ({
   company,
   href,
@@ -29,18 +22,21 @@ export const Career = ({
   </h3>
 );
 
-export const Experience = ({ title, skills, description }: ExperienceProps) => (
-  <ul>
-    <li className="flex flex-col">
-      <strong>{title}</strong>
-      <small>{skills.join(", ")}</small>
-    </li>
-    <ul>
-      {description.map((desc, idx) => (
+export const Experience = ({
+  title,
+  descriptions,
+}: {
+  title?: string;
+  descriptions: string[];
+}) => (
+  <>
+    {title ? <strong className="mt-7 block">{title}</strong> : null}
+    <ul className="mt-1">
+      {descriptions.map((desc, idx) => (
         <li key={idx} className="my-0">
           {desc}
         </li>
       ))}
     </ul>
-  </ul>
+  </>
 );
