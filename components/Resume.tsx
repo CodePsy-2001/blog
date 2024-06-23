@@ -1,14 +1,4 @@
-export const Career = ({
-  company,
-  href,
-  position,
-  period,
-}: {
-  company: string;
-  href?: string;
-  position: string;
-  period: string;
-}) => (
+export const Career = ({ company, href, position, period }: { company: string; href?: string; position: string; period: string }) => (
   <h3 className="flex w-full items-center">
     {href ? (
       <a className="font-bold underline" href={href}>
@@ -22,13 +12,7 @@ export const Career = ({
   </h3>
 );
 
-export const Experience = ({
-  title,
-  descriptions,
-}: {
-  title?: string;
-  descriptions: string[];
-}) => (
+export const Experience = ({ title, descriptions }: { title?: string; descriptions: string[] }) => (
   <div className="ml-6">
     {title ? <strong className="mt-7 block">[{title}]</strong> : null}
     <ul className="mt-1">
