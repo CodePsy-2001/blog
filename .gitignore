@@ -2,15 +2,6 @@
 .idea/tasks.xml
 
 /node_modules
-.pnp.*
-#!.yarn/cache
-
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 
 # next.js
 /.next/
