@@ -1,24 +1,24 @@
-const { promises: fs } = require("fs");
-const path = require("path");
-const RSS = require("rss");
-const matter = require("gray-matter");
+import { promises as fs } from "fs";
+import path from "path";
+import RSS from "rss";
+import matter from "gray-matter";
+const __dirname = path.resolve();
 
 async function generate() {
   const feed = new RSS({
     title: "Your Name",
-    site_url: "https://yoursite.com",
-    feed_url: "https://yoursite.com/feed.xml",
+    site_url: "https://codepsy2001.blog",
+    feed_url: "https://codepsy2001.blog/feed.xml",
   });
 
-  const posts = await fs.readdir(path.join(__dirname, "..", "pages", "posts"));
+  const postsPath = path.join(__dirname, "pages", "posts");
+  const posts = await fs.readdir(postsPath);
 
   await Promise.all(
     posts.map(async (name) => {
       if (name.startsWith("index.")) return;
 
-      const content = await fs.readFile(
-        path.join(__dirname, "..", "pages", "posts", name),
-      );
+      const content = await fs.readFile(path.join(postsPath, name));
       const frontmatter = matter(content);
 
       feed.item({
@@ -35,4 +35,4 @@ async function generate() {
   await fs.writeFile("./public/feed.xml", feed.xml({ indent: true }));
 }
 
-generate();
+generate().then();
