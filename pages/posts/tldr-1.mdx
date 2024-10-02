@@ -1,0 +1,193 @@
+---
+title: TLDR 한국어 번역률 100% - 1. ChatGPT로 초벌 번역하기
+date: 2024/08/31
+description: 셸 도구만 사용해 `tldr` 프로젝트의 한국어 번역률을 100%로 만들어보자.
+tag: Shell, ChatGPT, OpenSource, tldr
+author: CodePsy-2001
+---
+
+## 발단
+
+`tldr`은 명령어의 사용법을 간단하게 보여주는 프로젝트로, 셸 환경이라면 어디서나 쉽게 사용할 수 있다.
+기존 man 페이지와 비교하면 사용법이 간단하고, 예제가 많아 초보자에게 유용하다.
+
+하지만 한국어 번역률이 심각하게 저조한 상태로,
+2024년 8월 시점에는 다종다양한 명령어의 도움말은커녕 `git branch` 조차도 번역되지 않았었다.
+(지금은 답답해서 내가 번역해놨다)
+
+```
+❯ tldr git branch
+
+  Main Git command for working with branches.
+  More information: <https://git-scm.com/docs/git-branch>.
+
+  List all branches (local and remote; the current branch is highlighted by `*`):
+      git branch --all
+
+  List which branches include a specific Git commit in their history:
+      git branch --all --contains commit_hash
+...
+...
+...
+```
+
+`pacman`도, `npm`도, `docker`도 마찬가지였다.
+
+평소 오픈소스 기여에 관심이 많았던 나는 우선 git branch 명령어부터 번역해보기로 했다.
+
+
+### tldr의 구조
+
+tldr 레포지토리를 살펴보면 다음과 같은 구조로 되어 있다.
+
+```tree
+pages    # English
+├── common
+│   ├── git.md
+│   ├── git-branch.md
+├── <enviroment>    # Linux, MacOS, FreeBSD, Windows, ...
+pages.ko    # Korean
+├── common
+│   ├── git-branch.md
+pages.<locale>    # Other languages
+...
+```
+
+`pages.<locale>` > `<enviroment>` > `<command>.md` 순으로 파일이 차곡차곡 저장되어 있다.
+
+tldr 프로그램은 이 마크다운 파일들을 적시에 캐싱하고, 시스템 로캐일을 기반으로 어떤 파일을 보여줄지 결정하고, 셸에 출력한다.
+
+기여자는 다음 과정을 지켜야 한다.
+- 스타일 가이드를 참고한다. 단어집부터 명령형 문장까지 다양한 규칙이 있다.
+- 커밋 과정에서 tldr 체커의 검사를 통과한다.
+- 커밋 내역을 Fork한 개인 레포지토리에 저장한다.
+- 네이밍 컨벤션에 맞춰 Pull Request를 보낸다.
+
+번역 과정 자체는 어렵지 않지만, 각종 스타일 가이드를 꼼꼼하게 지키고 여러 파일을 번역하다보면 굉장히 귀찮아진다.
+`gettext` 같은 표준화된 번역 도구를 사용하지 않기 때문에, 웹 기반으로 불특정 다수가 참여하기 어렵다.
+영어 버전 파일이 조금이라도 바뀌면 번역 파일을 낡은 것으로 판단, 대신 원본을 보여주기 때문에 체감 번역률은 더욱 낮아진다.
+
+무언가 시스템적으로 개선할 방법이 없을까?
+
+쓰르라미 울 적에 한글 번역 프로젝트에도 참여해본 나는 그 때의 프로세스를 참고해보았다.
+
+
+## 번역 프로세스
+
+1. 번역이 필요한 파일 확인
+    - 현재, 번역이 필요한 파일을 알려주는 셸 도구 같은 게 없다.
+    - 우선 번역률 100%를 달성한 후, 웹훅 등으로 추가적인 번역 수요를 추적할 수 있다면 더 좋겠다.
+2. 초벌 번역
+    - 초벌 번역 후 검수 과정을 거치는 게 한 번에 꼼꼼하게 번역하는 것보다 효율적이다.
+3. 코드에 반영
+    - PR 컨벤션을 꼼꼼하게 지켜야 한다.
+
+
+## ChatGPT로 초벌 번역하기
+
+초벌 번역에는 ChatGPT를 활용하는 게 매우 효율적이다.
+
+언어 모델을 사용하면 각종 스타일 가이드를 프롬프트 형태로 직접 학습시킬 수 있고, 미묘한 뉘앙스(명령형 문장 등)나 전문 지식도 번역에 반영할 수 있다.
+
+![image1](https://private-user-images.githubusercontent.com/466920/252166817-ecbcccc4-7cfa-4c04-83c3-a822b6596f01.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mjc4NjU5MjcsIm5iZiI6MTcyNzg2NTYyNywicGF0aCI6Ii80NjY5MjAvMjUyMTY2ODE3LWVjYmNjY2M0LTdjZmEtNGMwNC04M2MzLWE4MjJiNjU5NmYwMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDAyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAwMlQxMDQwMjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hN2EwNjk5N2QzMGE1MjNhZjQxZjg1MzA4NzNkNDc0NjQ0YWM2NTNiNjI5OTE3MWMwYTc5ZDU5MTYwY2Q3NzJhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ZvCANBn1z_ZreFSoMnR-ZBbsOly1ihNPpXFlZYFae3Q)
+
+평소 사용하던 [gpt-cli](https://github.com/kharvd/gpt-cli)를 활용하면 쉽게 번역할 수 있겠다.
+
+모델이나 프롬프트 설정에 YML 파일 하나면 충분하다.
+
+```yml
+openai_api_key: <API_KEY>
+assistants:
+  tldr:
+    model: gpt-4o
+    messages:
+    - role: system
+      content: >
+        You provide excellent and accurate translations for TLDR documentation.
+        You provide accurate translations based on the inputted voca, guides, and examples.
+        You also infer rules from a given guides to maintain the quality of the translation in as many cases as possible.
+    - role: system
+      content: |
+        [VOCA]
+        See also: - 같이 보기:
+        <생략>
+    - role: system
+      content: |
+        [Guide]
+        {{}}로 감싸진 단어는 최선을 다해 번역하세요. (예: {{commit_hash}} - {{커밋_해시}})
+        예시 설명형은 가능한 한 명령법으로 표현되어야 합니다. 예를 들어, '시작하기:' 가 아닌 '시작:' 으로 표현되어야 합니다.
+    - role: system
+      content: |
+        [Example1 - Original]
+        <생략>
+    - role: system
+      content: |
+        [Example1 - Translation]
+        <생략>
+```
+
+전체 내용은 [여기](https://gist.github.com/CodePsy-2001/fcfc5bb7d2d3b43a983306b614fc26f4)서 확인할 수 있다.
+
+실행은 아래와 같이 한다. (셸 도구라 파일입출력이 매우 간편하다)
+
+```shell
+gpt-cli tldr < ./pages/common/git-branch.md
+```
+
+## 셸 스크립트로 자동화하기
+
+초벌 번역 과정은 다음 요건을 지키면 충분하다.
+
+1. 패턴 매칭으로 번역이 필요한 파일을 찾는다.
+2. 다음 경우에 ChatGPT로 번역한다.
+    - 번역 파일이 존재하지 않는 경우
+    - 번역 파일이 존재하지만 낡은 경우
+
+```bash
+#!/bin/bash
+# depends on `gpt-cli`
+
+for page in "$@"; do
+  [[ -f "$page" ]] || continue
+  printf "%s" "$(basename "$page")"
+
+  page_ko=${page//'./pages/'/'./pages.ko/'}
+
+  if [[ -f "$page_ko" ]]; then
+    if [[ $(git log -1 --format=%ct "$page_ko") -ge $(git log -1 --format=%ct "$page") ]]; then
+      printf "\t\e[33mSkip: already translated\e[0m\n"
+      continue
+    fi
+  fi
+
+  translated=$(gpt tldr -p "$(cat "$page")")
+  echo "$translated" > "$page_ko"
+
+  printf "\t\e[32mSuccess\e[0m\n"
+done
+
+printf "\nAll tasks are completed.\n\n"
+```
+
+비동기 처리 등 개선의 여지가 있지만, 이만하면 충분하다. 어차피 한 번만 실행하면 되니까.
+
+
+## 결과
+
+lazygit으로 전체 결과물을 손쉽게 확인하고 커밋할 수 있다.
+
+```shell
+# 번역 파일 생성
+./translate-ko pages/common/git-*.md
+# 파일 확인
+lazygit .
+```
+
+셸 도구만으로 1시간도 안 걸려서 초벌 번역 작업을 마쳤다. 문서 1만 개 정도 된다. (코딩보다 프롬프팅이 훨씬 오래 걸렸다)
+
+이제 내 Fork 레포에 올려두고 필요할 때마다 검수 및 PR을 보내면 된다.
+
+필요한 만큼만 코딩하니 모든 작업이 빠르고 즐겁다.
+
+
+> 다음 편은 나중에...
