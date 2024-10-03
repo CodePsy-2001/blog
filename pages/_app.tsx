@@ -1,9 +1,8 @@
 import "nextra-theme-blog/style.css";
 import Head from "next/head";
-import "../styles/main.css";
-import "../styles/globals.css";
+import "../styles.css";
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: any) {
   return (
     <>
       <Head>

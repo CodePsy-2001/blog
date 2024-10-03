@@ -1,7 +1,16 @@
-const withNextra = require("nextra")({
+import bundleAnalyzer from "@next/bundle-analyzer";
+import nextra from "nextra";
+
+const withNextra = nextra({
   theme: "nextra-theme-blog",
-  themeConfig: "./theme.config.js",
-  // optional: add `unstable_staticImage: true` to enable Nextra's auto image import
+  themeConfig: "./theme.config.tsx",
+  defaultShowCopyCode: true,
+  latex: true,
+  autoImportThemeStyle: false,
+});
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
@@ -17,4 +26,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withNextra(nextConfig);
+export default withBundleAnalyzer(withNextra(nextConfig));
