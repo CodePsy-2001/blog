@@ -9,6 +9,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
         <meta name="google-adsense-account" content="ca-pub-8136657929424448" />
         <meta name="robots" content="follow, index" />
         <meta property="og:site_name" content={meta.title} />
