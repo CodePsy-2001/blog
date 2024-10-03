@@ -9,11 +9,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8136657929424448"
-          crossOrigin="anonymous"
-        />
+        <meta name="google-adsense-account" content="ca-pub-8136657929424448" />
         <meta name="robots" content="follow, index" />
         <meta property="og:site_name" content={meta.title} />
         <meta property="og:image" content={meta.image} />
