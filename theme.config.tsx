@@ -1,14 +1,15 @@
-import { NextraBlogTheme } from "nextra-theme-blog";
+import { NextraBlogTheme } from 'nextra-theme-blog'
 
-const YEAR = new Date().getFullYear();
+const YEAR = new Date().getFullYear()
 
 const config: NextraBlogTheme = {
   darkMode: true,
   footer: (
-    <footer style={{ marginTop: "8rem" }}>
+    <footer style={{ marginTop: '8rem' }}>
       <small>
-        <time>{YEAR}</time>© CodePsy-2001.
-        <a href="/feed.xml" style={{ float: "right" }}>
+        <time>{YEAR}</time>
+        © CodePsy-2001.
+        <a href="/feed.xml" style={{ float: 'right' }}>
           RSS
         </a>
       </small>
@@ -32,13 +33,13 @@ const config: NextraBlogTheme = {
       {meta.tag && <meta name="keywords" content={meta.tag} />}
       {meta.author && <meta name="author" content={meta.author} />}
     </>
-  ),
+  )
   // navs: [
   //   {
   //     url: 'https://github.com/shuding/nextra',
   //     name: 'Nextra'
   //   }
   // ]
-};
+}
 
-export default config;
+export default config

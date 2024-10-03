@@ -1,4 +1,9 @@
-export const Career = ({ company, href, position, period }: { company: string; href?: string; position: string; period: string }) => (
+export const Career = ({ company, href, position, period }: {
+  company: string;
+  href?: string;
+  position: string;
+  period: string;
+}) => (
   <h3 className="flex w-full items-center">
     {href ? (
       <a className="font-bold underline" href={href}>
@@ -10,7 +15,7 @@ export const Career = ({ company, href, position, period }: { company: string; h
     , {position}
     <small className="ml-auto text-gray-500">{period}</small>
   </h3>
-);
+)
 
 export const Experience = ({ title, descriptions }: { title?: string; descriptions: string[] }) => (
   <div className="ml-6">
@@ -23,4 +28,4 @@ export const Experience = ({ title, descriptions }: { title?: string; descriptio
       ))}
     </ul>
   </div>
-);
+)

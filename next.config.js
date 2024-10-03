@@ -1,29 +1,29 @@
-import bundleAnalyzer from "@next/bundle-analyzer";
-import nextra from "nextra";
+import bundleAnalyzer from '@next/bundle-analyzer'
+import nextra from 'nextra'
 
 const withNextra = nextra({
-  theme: "nextra-theme-blog",
-  themeConfig: "./theme.config.tsx",
+  theme: 'nextra-theme-blog',
+  themeConfig: './theme.config.tsx',
   defaultShowCopyCode: true,
   latex: true,
-  autoImportThemeStyle: false,
-});
+  autoImportThemeStyle: false
+})
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
+  enabled: process.env.ANALYZE === 'true'
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.ya?ml$/,
-      type: "json",
+      type: 'json',
       options: { asJSON: true },
-      loader: "yaml-loader",
-    });
-    return config;
-  },
-};
+      loader: 'yaml-loader'
+    })
+    return config
+  }
+}
 
-export default withBundleAnalyzer(withNextra(nextConfig));
+export default withBundleAnalyzer(withNextra(nextConfig))
