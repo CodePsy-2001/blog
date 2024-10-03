@@ -1,4 +1,5 @@
 import { NextraBlogTheme } from 'nextra-theme-blog'
+import Utterances from '@componets/Utterances'
 
 const YEAR = new Date().getFullYear()
 
@@ -33,6 +34,9 @@ const config: NextraBlogTheme = {
       {meta.tag && <meta name="keywords" content={meta.tag} />}
       {meta.author && <meta name="author" content={meta.author} />}
     </>
+  ),
+  comments: (
+    <Utterances />
   ),
   readMore: ''
   // navs: [
