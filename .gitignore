@@ -22,3 +22,6 @@
 
 *.tsbuildinfo
 next-env.d.ts
+
+# rss
+/public/feed.xml
