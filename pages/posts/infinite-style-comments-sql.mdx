@@ -1,0 +1,217 @@
+---
+title: (번역) SQL을 사용해 무한 대댓글 우아하게 구현하기
+date: 2023/06/30
+description: SQL을 사용하면 무한 대댓글을 군더더기 없이 우아하게 구현할 수 있다.
+tag: SQL, Backend
+author: CodePsy-2001
+---
+
+**원문: https://nehajirafe.medium.com/data-modeling-designing-facebook-style-comments-with-sql-4cf9e81eb164**
+
+
+우리 모두 소셜 네트워킹 사이트의 '댓글' 섹션을 사용해 본 적이 있을 것입니다.
+
+이제 이를 SQL 데이터베이스에서 어떻게 모델링할 수 있는지 살펴보겠습니다.
+
+### 레벨 1 댓글
+
+가장 간단한 형태의 댓글은 레벨 1 댓글입니다.
+- **사용자**가 만든 **게시글**
+- **게시글**에 달린 **댓글**
+
+![level 1 comments](/assets/infinite-style-comments-sql/01.webp)
+
+꽤 간단하죠? 이제 여기에 약간의 복잡성을 추가해 보겠습니다.
+
+### 레벨 2 댓글
+
+이제 사용자가 자신의 게시물에 대한 댓글에 답글을 달 수 있습니다. 단, 단순함을 위해 한 단계만 가능합니다.
+
+- **사용자**가 만든 **게시글**
+- **게시글**에 달린 **댓글**
+- **댓글**에 달린 **댓글**
+
+![level 2 comments](/assets/infinite-style-comments-sql/02.webp)
+
+'1111' 게시물의 댓글을 각 수준별로 쿼리하는 방법을 살펴봅시다.
+
+```sql
+SELECT
+    post_id,
+    parent.comment as level1_comment,
+    child.comment as level2_comment
+FROM
+    Comment parent , Comment child
+WHERE
+    post_id = '1111' and
+    child.parent_comment_id = parent.comment_id
+```
+
+레벨 2까지는 아직 상황이 괜찮네요.
+
+### 레벨 n 댓글
+
+"인스타그램"에서와 같이 "n" 단계의 중첩된 댓글이 있다면 쿼리는 어떻게 될까요? 레벨 6 댓글을 쿼리하려면 데이터를 6번 self join해야 합니다.
+
+![level n comments](/assets/infinite-style-comments-sql/03.webp)
+
+#### 접근 1 - self join 반복
+
+self join을 반복하면 매우 복잡해질 수 있으며, 실행하기에 가장 비효율적인 쿼리 중 하나이기 때문에 성능이 저하됩니다.
+
+```sql
+SELECT
+    post_id,
+    p1.comment as level1_comment,
+    p2.comment as level2_comment,
+    p3.comment as level3_comment,
+    p4.comment as level4_comment,
+    p5.comment as level5_comment,
+    p6.comment as level6_comment
+FROM
+      Comment p1
+LEFT JOIN
+      Comment p2 on p2.parent_comment_id = p1.comment_id
+LEFT JOIN
+      Comment p3 on p3.parent_comment_id = p2.comment_id
+LEFT JOIN
+      Comment p4 on p4.parent_comment_id = p3.comment_id
+LEFT JOIN
+      Comment p5 on p5.parent_comment_id = p4.comment_id
+LEFT JOIN
+      Comment p6 on p6.parent_comment_id = p5.comment_id
+WHERE
+    post_id = '1111' and
+```
+
+이 모델은 데이터베이스가 확장되기 시작하면 빠르게 통제 불능 상태가 될 수 있습니다.
+
+#### 접근 2 - 재귀적 CTE
+
+MySQL은 재귀적 CTE(공통 테이블 표현식, Common Table Expression)를 지원하며, 재귀적 CTE를 사용하여 경로 스타일 식별자를 생성해 데이터베이스를 쿼리할 수 있습니다. 그러나 이는 쿼리 구문과 데이터 표현을 단순화할 뿐, 기본 쿼리 엔진의 복잡성을 줄이지는 않습니다.
+(역주: 쿼리에 걸리는 시간은 그대로입니다)
+
+```sql
+WITH RECURSIVE cte AS
+    ( SELECT
+             comment,
+             comment_id AS path,
+             user_id,
+             post_id
+      FROM
+             Comment
+      WHERE parent_comment_id IS NULL
+      UNION ALL
+      SELECT
+         comment,
+         CONCAT(parent.path,'/',child.name)comment_id AS comment_id,
+         user_id,
+         post_id
+      FROM
+         Comment parent , Comment child
+      WHERE
+         child.parent_comment_id = parent.comment_id )
+SELECT * FROM cte;
+```
+
+이제 데이터는 정규화 및 평탄화되어 다음과 같이 보일 수 있습니다.
+
+```
+path             | comment                | user_id     | post_id
+------------------------------------------------------------------
+1                | I am comment 1         | ....        | 1111
+1/7              | I am comment 7         | ....        | 1111
+2                | I am comment 2         | ....        | 1111
+2/3              | I am comment 3         | ....        | 1111
+2/3/4            | I am comment 4         | ....        | 1111
+2/3/4/5          | I am comment 5         | ....        | 1111
+2/3/4/5/6        | I am comment 6         | ....        | 1111
+```
+
+#### 대체 데이터 모델 - 경로 식별자
+
+경로(path) 형태의 식별자로 데이터를 저장하는 데이터 모델을 만들면 어떨까요? 여기서는 댓글 테이블에서 self 참조를 제거하고 path 컬럼을 새로 추가합니다.
+
+![](https://velog.velcdn.com/images/codepsy2001/post/3e4516bd-1894-44fc-9be6-5fcef97d53ae/image.webp)
+
+이제 현재 행의 path를 다른 행의 path와 비교하여 상위 코멘트를 쿼리할 수 있습니다. 예를 들어 path가 `2/3/4/5`인 댓글 #5의 조상을 찾으려면 다음과 같이 합니다.
+
+```sql
+SELECT *
+FROM
+   Comment AS c
+WHERE (SELECT
+          path
+       FROM
+          Comment
+       WHERE
+          comment_id = 5) LIKE c.path || '%'
+```
+
+이는 조상 `2/3/4/%` , `2/3/%` 및 `2/%` path에서 만들어진 패턴과 일치합니다.
+
+**path 식별자의 단점**
+
+경로 식별자에는 몇 가지 단점이 있습니다. 데이터베이스는 경로가 올바르게 형성되었는지, 또는 경로 값이 기존 댓글과 일치하는지 등을 확인할 수 없습니다. (역주: 제약조건을 통해 검증하기가 곤란합니다)
+
+또 한 가지 주의해야 할 점은 VARCHAR 열에는 길이 한계가 있으며, 경로의 깊이가 이 한계로 제한된다는 것입니다. 물론 대부분의 경우 문제가 되지는 않습니다.
+
+#### 대체 데이터 모델 - 클로저 테이블
+
+**클로저 테이블 Closure Table** 솔루션은 계층 구조를 저장하는 간단하고 우아한 방법입니다. 여기에는 직접적인 부모-자식 관계가 있는 경로뿐만 아니라 트리를 통과하는 모든 경로를 저장하는 것이 포함됩니다.
+
+부모-자식 관계에 대한 정보를 저장하기 위해 댓글 테이블을 사용하는 대신 "부모자식_댓글" 조회 테이블을 만들어 보겠습니다.
+
+![](https://velog.velcdn.com/images/codepsy2001/post/e767182c-f769-42a6-8124-95f63683c493/image.webp)
+
+```sql
+parent_comment_id             | child_comment_id
+-----------------------------------------------------
+1                             | 1
+1                             | 7
+2                             | 2
+2                             | 3
+2                             | 4
+2                             | 5
+2                             | 6
+3                             | 3
+3                             | 4
+3                             | 5
+3                             | 6
+4                             | 4
+4                             | 5
+4                             | 6
+5                             | 5
+5                             | 6
+6                             | 6
+```
+
+댓글 #3에 대한 모든 하위 댓글을 검색하는 쿼리는 다음과 같습니다.
+
+```sql
+SELECT *
+FROM
+   Comment AS c
+JOIN parent_child_comment p ON c.comment_id = p.child_comment_id
+WHERE
+   p.parent_comment_id = 3
+```
+
+댓글 #6에 대한 모든 상위 댓글을 검색하는 쿼리는 다음과 같습니다.
+
+```sql
+SELECT c.*
+FROM
+   Comment AS c
+JOIN parent_child_comment p ON c.comment_id = p.child_comment_id
+WHERE
+   p.child_comment_id = 6
+```
+
+클로저 테이블은 깊은 다단계 계층을 모델링하는 데 가장 다재다능한 디자인으로, 많은 행이 있는 추가 테이블이 필요합니다. 이 추가 공간은 컴퓨팅 효율성에 대한 트레이드오프죠.
+
+참고 : 데이터 모델을 생성할 때 다른 작업인 `INSERT`, `UPDATE`, `DELETE`에 대한 비용도 고려해야 합니다. 이러한 작업의 효율성을 기준으로 애플리케이션 요구 사항에 적합한 것을 선택하세요.
+
+NO-SQL 데이터 모델을 사용하는 것도 이러한 문제에 대한 또 다른 옵션입니다. 제약 조건 설계도 동일하게 고려할 수 있어요.
+
+즐거운 코딩 되세요!
