@@ -57,6 +57,9 @@ pages.<locale>    # Other languages
 
 tldr 프로그램은 이 마크다운 파일들을 적시에 캐싱하고, 시스템 로캐일을 기반으로 어떤 파일을 보여줄지 결정하고, 셸에 출력한다.
 
+
+## 번역 프로세스
+
 기여자는 다음 과정을 지켜야 한다.
 - 스타일 가이드를 참고한다. 단어집부터 명령형 문장까지 다양한 규칙이 있다.
 - 커밋 과정에서 tldr 체커의 검사를 통과한다.
@@ -67,12 +70,7 @@ tldr 프로그램은 이 마크다운 파일들을 적시에 캐싱하고, 시�
 `gettext` 같은 표준화된 번역 도구를 사용하지 않기 때문에, 웹 기반으로 불특정 다수가 참여하기 어렵다.
 영어 버전 파일이 조금이라도 바뀌면 번역 파일을 낡은 것으로 판단, 대신 원본을 보여주기 때문에 체감 번역률은 더욱 낮아진다.
 
-무언가 시스템적으로 개선할 방법이 없을까?
-
-쓰르라미 울 적에 한글 번역 프로젝트에도 참여해본 나는 그 때의 프로세스를 참고해보았다.
-
-
-## 번역 프로세스
+### 개선할 점
 
 1. 번역이 필요한 파일 확인
     - 현재, 번역이 필요한 파일을 알려주는 셸 도구 같은 게 없다.
@@ -89,7 +87,7 @@ tldr 프로그램은 이 마크다운 파일들을 적시에 캐싱하고, 시�
 
 언어 모델을 사용하면 각종 스타일 가이드를 프롬프트 형태로 직접 학습시킬 수 있고, 미묘한 뉘앙스(명령형 문장 등)나 전문 지식도 번역에 반영할 수 있다.
 
-![image1](https://private-user-images.githubusercontent.com/466920/252166817-ecbcccc4-7cfa-4c04-83c3-a822b6596f01.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mjc4NjU5MjcsIm5iZiI6MTcyNzg2NTYyNywicGF0aCI6Ii80NjY5MjAvMjUyMTY2ODE3LWVjYmNjY2M0LTdjZmEtNGMwNC04M2MzLWE4MjJiNjU5NmYwMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDAyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAwMlQxMDQwMjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hN2EwNjk5N2QzMGE1MjNhZjQxZjg1MzA4NzNkNDc0NjQ0YWM2NTNiNjI5OTE3MWMwYTc5ZDU5MTYwY2Q3NzJhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ZvCANBn1z_ZreFSoMnR-ZBbsOly1ihNPpXFlZYFae3Q)
+![image1](/assets/tldr-translation-1/01.png)
 
 평소 사용하던 [gpt-cli](https://github.com/kharvd/gpt-cli)를 활용하면 쉽게 번역할 수 있겠다.
 
@@ -176,6 +174,8 @@ printf "\nAll tasks are completed.\n\n"
 
 lazygit으로 전체 결과물을 손쉽게 확인하고 커밋할 수 있다.
 
+![lazygit](/assets/tldr-translation-1/02.png)
+
 ```shell
 # 번역 파일 생성
 ./translate-ko pages/common/git-*.md
@@ -189,5 +189,6 @@ lazygit .
 
 필요한 만큼만 코딩하니 모든 작업이 빠르고 즐겁다.
 
+---
 
-> 다음 편은 나중에...
+> 다음 편 작성시 링크 올려드리겠습니다!
