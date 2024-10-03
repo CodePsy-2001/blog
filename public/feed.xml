@@ -4,7 +4,7 @@
         <description><![CDATA[Your Name]]></description>
         <link>https://codepsy2001.blog</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 23 Jun 2024 09:18:24 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 03 Oct 2024 07:31:34 GMT</lastBuildDate>
         <atom:link href="https://codepsy2001.blog/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[Markdown Examples]]></title>
@@ -23,6 +23,18 @@
             <category><![CDATA[web development]]></category>
             <dc:creator><![CDATA[You]]></dc:creator>
             <pubDate>Wed, 17 Mar 2021 15:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[TLDR 한국어 번역률 100% - 1. ChatGPT로 초벌 번역하기]]></title>
+            <description><![CDATA[셸 도구만 사용해 `tldr` 프로젝트의 한국어 번역률을 100%로 만들어보자.]]></description>
+            <link>/posts/tldr-translation-1</link>
+            <guid isPermaLink="true">/posts/tldr-translation-1</guid>
+            <category><![CDATA[Shell]]></category>
+            <category><![CDATA[ChatGPT]]></category>
+            <category><![CDATA[OpenSource]]></category>
+            <category><![CDATA[tldr]]></category>
+            <dc:creator><![CDATA[CodePsy-2001]]></dc:creator>
+            <pubDate>Fri, 30 Aug 2024 15:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
