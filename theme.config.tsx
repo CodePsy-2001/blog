@@ -33,7 +33,8 @@ const config: NextraBlogTheme = {
       {meta.tag && <meta name="keywords" content={meta.tag} />}
       {meta.author && <meta name="author" content={meta.author} />}
     </>
-  )
+  ),
+  readMore: ''
   // navs: [
   //   {
   //     url: 'https://github.com/shuding/nextra',
