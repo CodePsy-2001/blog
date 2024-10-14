@@ -4,7 +4,7 @@
   "scripts": {
     "analyze": "ANALYZE=true pnpm build",
     "dev": "next",
-    "build": "node scripts/gen-rss.mjs && next build",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
