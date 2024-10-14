@@ -23,6 +23,9 @@ importers:
       nextra-theme-blog:
         specifier: 4.0.0-app-router.6
         version: 4.0.0-app-router.6(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.6(@types/react@18.3.11)(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      pagefind:
+        specifier: ^1.1.1
+        version: 1.1.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -533,6 +536,31 @@ packages:
   '@npmcli/name-from-folder@2.0.0':
     resolution: {integrity: sha512-pwK+BfEBZJbKdNYpHHRTNBwBoqrN/iIMO0AiGvYsp3Hoaq0WbgGSWQR6SCldZovoDpY3yje5lkFUe6gsDgJ2vg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  '@pagefind/darwin-arm64@1.1.1':
+    resolution: {integrity: sha512-tZ9tysUmQpFs2EqWG2+E1gc+opDAhSyZSsgKmFzhnWfkK02YHZhvL5XJXEZDqYy3s1FAKhwjTg8XDxneuBlDZQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@pagefind/darwin-x64@1.1.1':
+    resolution: {integrity: sha512-ChohLQ39dLwaxQv0jIQB/SavP3TM5K5ENfDTqIdzLkmfs3+JlzSDyQKcJFjTHYcCzQOZVeieeGq8PdqvLJxJxQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@pagefind/linux-arm64@1.1.1':
+    resolution: {integrity: sha512-H5P6wDoCoAbdsWp0Zx0DxnLUrwTGWGLu/VI1rcN2CyFdY2EGSvPQsbGBMrseKRNuIrJDFtxHHHyjZ7UbzaM9EA==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@pagefind/linux-x64@1.1.1':
+    resolution: {integrity: sha512-yJs7tTYbL2MI3HT+ngs9E1BfUbY9M4/YzA0yEM5xBo4Xl8Yu8Qg2xZTOQ1/F6gwvMrjCUFo8EoACs6LRDhtMrQ==}
+    cpu: [x64]
+    os: [linux]
+
+  '@pagefind/windows-x64@1.1.1':
+    resolution: {integrity: sha512-b7/qPqgIl+lMzkQ8fJt51SfguB396xbIIR+VZ3YrL2tLuyifDJ1wL5mEm+ddmHxJ2Fki340paPcDan9en5OmAw==}
+    cpu: [x64]
+    os: [win32]
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -2586,6 +2614,10 @@ packages:
   package-manager-detector@0.2.0:
     resolution: {integrity: sha512-E385OSk9qDcXhcM9LNSe4sdhx8a9mAPrZ4sMLW+tmxl5ZuGtPUcdFu+MPP2jbgiWAZ6Pfe5soGFMd+0Db5Vrog==}
 
+  pagefind@1.1.1:
+    resolution: {integrity: sha512-U2YR0dQN5B2fbIXrLtt/UXNS0yWSSYfePaad1KcBPTi0p+zRtsVjwmoPaMQgTks5DnHNbmDxyJUL5TGaLljK3A==}
+    hasBin: true
+
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -3903,6 +3935,21 @@ snapshots:
       read-package-json-fast: 3.0.2
 
   '@npmcli/name-from-folder@2.0.0': {}
+
+  '@pagefind/darwin-arm64@1.1.1':
+    optional: true
+
+  '@pagefind/darwin-x64@1.1.1':
+    optional: true
+
+  '@pagefind/linux-arm64@1.1.1':
+    optional: true
+
+  '@pagefind/linux-x64@1.1.1':
+    optional: true
+
+  '@pagefind/windows-x64@1.1.1':
+    optional: true
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -6619,6 +6666,14 @@ snapshots:
   package-json-from-dist@1.0.0: {}
 
   package-manager-detector@0.2.0: {}
+
+  pagefind@1.1.1:
+    optionalDependencies:
+      '@pagefind/darwin-arm64': 1.1.1
+      '@pagefind/darwin-x64': 1.1.1
+      '@pagefind/linux-arm64': 1.1.1
+      '@pagefind/linux-x64': 1.1.1
+      '@pagefind/windows-x64': 1.1.1
 
   parent-module@1.0.1:
     dependencies:
