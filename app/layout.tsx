@@ -38,8 +38,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <Layout nextThemes={{ forcedTheme: 'dark' }}>
       <Navbar
         navs={[
-          { url: '/', name: 'About' },
-          { url: '/posts', name: 'Posts' }
+          { url: '/posts', name: 'Posts' },
+          { url: '/', name: 'Resume' }
         ]}
       >
         {/*<Search />*/}

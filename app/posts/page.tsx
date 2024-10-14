@@ -16,16 +16,16 @@ export default async function PostsPage() {
   return (
     <div data-pagefind-ignore="all">
       <h1>{metadata.title}</h1>
-      {/*<div*/}
-      {/*  className="_not-prose"*/}
-      {/*  style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}*/}
-      {/*>*/}
-      {/*  {Object.entries(allTagsCount).map(([tag, count]) => (*/}
-      {/*    <Link key={tag} href={`/tags/${tag}`} className="nextra-tag">*/}
-      {/*      {tag} ({count})*/}
-      {/*    </Link>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
+      <div
+        className="_not-prose"
+        style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}
+      >
+        {Object.entries(allTagsCount).map(([tag, count]) => (
+          <Link key={tag} href={`/tags/${tag}`} className="nextra-tag">
+            {tag} ({count})
+          </Link>
+        ))}
+      </div>
       {(await getPosts()).map(post => (
         <PostCard key={post.route} post={post} readMore="" />
       ))}
