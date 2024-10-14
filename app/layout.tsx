@@ -1,4 +1,4 @@
-import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-blog'
+import { Footer, Layout, Navbar } from 'nextra-theme-blog'
 import { Banner, Head, Search } from 'nextra/components'
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     {/*  </a>*/}
     {/*</Banner>*/}
 
-    <Layout nextThemes={{}}>
+    <Layout nextThemes={{ forcedTheme: 'dark' }}>
       <Navbar
         navs={[
           { url: '/', name: 'About' },
@@ -43,7 +43,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         ]}
       >
         {/*<Search />*/}
-        <ThemeSwitch />
       </Navbar>
       {children}
       <Footer>
