@@ -1,12 +1,16 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
 import nextra from 'nextra'
+import path from 'path'
 
 const withNextra = nextra({
-  theme: 'nextra-theme-blog',
-  themeConfig: './theme.config.tsx',
-  defaultShowCopyCode: true,
   latex: true,
-  autoImportThemeStyle: false
+  search: {
+    codeblocks: false
+  },
+  mdxOptions: {
+    providerImportSource: path.join(process.cwd(), 'mdx-components') // 'nextra-theme-blog'
+  },
+  defaultShowCopyCode: true
 })
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -15,14 +19,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.ya?ml$/,
-      type: 'json',
-      options: { asJSON: true },
-      loader: 'yaml-loader'
-    })
-    return config
+  reactStrictMode: true,
+  cleanDistDir: true,
+  experimental: {
+    optimizePackageImports: ['nextra/components', 'nextra-theme-blog']
   }
 }
 

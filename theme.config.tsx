@@ -1,24 +1,7 @@
-import { NextraBlogTheme } from 'nextra-theme-blog'
-import Utterances from '@componets/Utterances'
-import { format } from 'date-fns'
-import AdSense from '@componets/AdSense'
+// 마이그레이션을 위해 남겨둠. 실제 동작은 없음.
 
-const YEAR = new Date().getFullYear()
-
-const config: NextraBlogTheme = {
-  darkMode: true,
-  footer: (
-    <footer style={{ marginTop: '8rem' }}>
-      <small>
-        <time>{YEAR}</time>
-        © CodePsy-2001.
-        <a href="/feed.xml" style={{ float: 'right' }}>
-          RSS
-        </a>
-      </small>
-    </footer>
-  ),
-  head: ({ title, meta }) => (
+const config = {
+  head: ({ title, meta }: any) => (
     <>
       {meta.title && (
         <>
@@ -36,21 +19,7 @@ const config: NextraBlogTheme = {
       {meta.tag && <meta name="keywords" content={meta.tag} />}
       {meta.author && <meta name="author" content={meta.author} />}
     </>
-  ),
-  comments: (
-    <>
-      <AdSense />
-      <Utterances />
-    </>
-  ),
-  readMore: '',
-  dateFormatter: (date) => format(new Date(date), 'yyyy년 M월 d일')
-  // navs: [
-  //   {
-  //     url: 'https://github.com/shuding/nextra',
-  //     name: 'Nextra'
-  //   }
-  // ]
+  )
 }
 
 export default config

@@ -5,15 +5,15 @@
     "analyze": "ANALYZE=true pnpm build",
     "dev": "next",
     "build": "next build",
+    "postbuild": "pagefind --site .next/server/app --output-path .next/static/chunks/pagefind",
     "start": "next start"
   },
   "dependencies": {
-    "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.5.0",
     "next": "^14.2.15",
-    "nextra": "^3.0.11",
-    "nextra-theme-blog": "^3.0.11",
+    "nextra": "4.0.0-app-router.6",
+    "nextra-theme-blog": "4.0.0-app-router.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rss": "^1.2.2",
