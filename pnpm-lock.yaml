@@ -23,9 +23,6 @@ importers:
       nextra-theme-blog:
         specifier: 4.0.0-app-router.20
         version: 4.0.0-app-router.20(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.20(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      pagefind:
-        specifier: ^1.1.1
-        version: 1.1.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -75,6 +72,9 @@ importers:
       globals:
         specifier: ^15.11.0
         version: 15.11.0
+      pagefind:
+        specifier: ^1.1.1
+        version: 1.1.1
       postcss:
         specifier: ^8.4.47
         version: 8.4.47

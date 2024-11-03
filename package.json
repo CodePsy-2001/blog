@@ -3,9 +3,8 @@
   "type": "module",
   "scripts": {
     "analyze": "ANALYZE=true pnpm build",
-    "dev": "next",
+    "dev": "next --turbopack",
     "build": "next build",
-    "postbuild": "pagefind --site .next/server/app --output-path .next/static/chunks/pagefind",
     "start": "next start"
   },
   "dependencies": {
@@ -14,7 +13,6 @@
     "next": "^15.0.2",
     "nextra": "4.0.0-app-router.20",
     "nextra-theme-blog": "4.0.0-app-router.20",
-    "pagefind": "^1.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rss": "^1.2.2",
