@@ -21,6 +21,10 @@ const nextConfig = {
   cleanDistDir: true,
   experimental: {
     optimizePackageImports: ['nextra/components', 'nextra-theme-blog']
+  },
+  webpack: (config, options) => {
+    config.cache = false
+    return config
   }
 }
 
