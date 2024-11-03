@@ -18,11 +18,11 @@ importers:
         specifier: ^15.0.2
         version: 15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nextra:
-        specifier: 4.0.0-app-router.11
-        version: 4.0.0-app-router.11(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        specifier: 4.0.0-app-router.12
+        version: 4.0.0-app-router.12(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       nextra-theme-blog:
-        specifier: 4.0.0-app-router.11
-        version: 4.0.0-app-router.11(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.11(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 4.0.0-app-router.12
+        version: 4.0.0-app-router.12(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.12(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2473,16 +2473,16 @@ packages:
       sass:
         optional: true
 
-  nextra-theme-blog@4.0.0-app-router.11:
-    resolution: {integrity: sha512-NyVWIT6zIjz5PoF+t5qmeK1W9h3Q7Ir3A1RHpDsthfY02Tb68bLsXVZOKn2EhUapnVEB/b4BR2tNAVZpUTxcEg==}
+  nextra-theme-blog@4.0.0-app-router.12:
+    resolution: {integrity: sha512-6aR5ZfCAsbamdAK38b5LmZtwzZ/OfLW8Uzht4UjaaW/GWoDWhNhfBmp0c62PB+2RYalZCGrSWhP66H0BtDTXlg==}
     peerDependencies:
       next: '>=13'
-      nextra: 4.0.0-app-router.11
+      nextra: 4.0.0-app-router.12
       react: '>=18'
       react-dom: '>=18'
 
-  nextra@4.0.0-app-router.11:
-    resolution: {integrity: sha512-SYIol/M6hf83qQznMRswn0cKqEWAVLvlxienvk+KTv8wrB1txoAQI30y02W1THoHYPZtIPg2a0wfEuVr/r0Gbg==}
+  nextra@4.0.0-app-router.12:
+    resolution: {integrity: sha512-dBDFQGSU4yc1yM80zUYaNDFz/I77SmH40hHH6Do6p1t9e9ZkY3jT1q2hxViDLUFqVL/OvRjFXdySL0mZZ9u7eA==}
     engines: {node: '>=18'}
     peerDependencies:
       next: '>=13'
@@ -6486,16 +6486,16 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextra-theme-blog@4.0.0-app-router.11(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.11(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  nextra-theme-blog@4.0.0-app-router.12(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.12(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       next: 15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-themes: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-view-transitions: 0.3.2(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      nextra: 4.0.0-app-router.11(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+      nextra: 4.0.0-app-router.12(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  nextra@4.0.0-app-router.11(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  nextra@4.0.0-app-router.12(@types/react@18.3.12)(next@15.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.7
       '@headlessui/react': 2.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
