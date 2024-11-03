@@ -1,15 +1,13 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
 import nextra from 'nextra'
-import path from 'path'
 
+/* @type {import('nextra')} */
 const withNextra = nextra({
   latex: true,
   search: {
     codeblocks: false
   },
-  mdxOptions: {
-    providerImportSource: path.join(process.cwd(), 'mdx-components') // 'nextra-theme-blog'
-  },
+  mdxOptions: {},
   defaultShowCopyCode: true
 })
 
