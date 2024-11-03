@@ -1,5 +1,5 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-blog'
-import { Banner, Head, Search } from 'nextra/components'
+import { Head } from 'nextra/components'
 import type { PropsWithChildren } from 'react'
 import type { Metadata } from 'next'
 import 'nextra-theme-blog/style.css'
@@ -29,11 +29,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <meta name="google-adsense-account" content="ca-pub-8136657929424448" />
     </Head>
     <body>
-    {/*<Banner storageKey="4.0-release">*/}
-    {/*  <a href="https://nextra.site" target="_blank" rel="noreferrer">*/}
-    {/*    🎉 Nextra 4.0 is released. Read more →*/}
-    {/*  </a>*/}
-    {/*</Banner>*/}
 
     <Layout nextThemes={{ forcedTheme: 'dark' }}>
       <Navbar
@@ -42,7 +37,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           { url: '/', name: 'Resume' }
         ]}
       >
-        {/*<Search />*/}
       </Navbar>
       {children}
       <Footer>
