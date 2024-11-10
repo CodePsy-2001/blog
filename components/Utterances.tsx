@@ -17,9 +17,9 @@ export default function Utterances() {
       }}
     >
       <hr />
-      <h4 className="text-xl">
+      <h2 className="text-xl">
         댓글
-      </h4>
+      </h2>
     </section>
   )
 }
