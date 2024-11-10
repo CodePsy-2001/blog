@@ -11,7 +11,11 @@ export const metadata: Metadata = {
     siteName: '코드싸이 블로그',
     images: ['/assets/og-image.png']
   },
-  robots: 'follow, index'
+  metadataBase: new URL('https://codepsy2001.blog'),
+  robots: 'follow, index',
+  alternates: {
+    canonical: './'
+  }
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {
