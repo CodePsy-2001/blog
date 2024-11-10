@@ -17,6 +17,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // 동적 sitemap.ts 및 사용시 output export 불가능
   reactStrictMode: true,
   cleanDistDir: true,
   experimental: {
