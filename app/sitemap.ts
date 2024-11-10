@@ -27,8 +27,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: 'https://codepsy2001.blog' + post.route,
       lastModified: new Date(post.frontMatter.date!),
-      changeFrequency: 'daily',
-      priority: 0.7
+      changeFrequency: 'weekly',
+      priority: 0.9
     }
   })
 
