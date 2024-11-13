@@ -3,7 +3,7 @@ import { PostCard } from 'nextra-theme-blog'
 import { getPosts, getTags } from './get-posts'
 
 export const metadata = {
-  title: 'Posts'
+  title: '게시글 : 코드싸이 블로그'
 }
 
 export default async function PostsPage() {

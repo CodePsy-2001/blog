@@ -81,6 +81,10 @@ img.next-image {
     color: #0074de;
 }
 
+._prose {
+    max-width: 85ch;
+}
+
 .nav-line .nav-link {
     color: #69778c;
 }

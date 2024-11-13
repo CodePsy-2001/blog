@@ -37,8 +37,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <Layout nextThemes={{ forcedTheme: 'dark' }}>
       <Navbar
         navs={[
-          { url: '/posts', name: 'Posts' },
-          { url: '/', name: 'Resume' }
+          { url: '/posts', name: '게시글' },
+          { url: '/', name: '소개' }
         ]}
       >
       </Navbar>
