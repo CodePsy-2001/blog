@@ -19,7 +19,7 @@ export const Career = ({ company, href, position, period }: {
 
 export const Experience = ({ title, descriptions }: { title?: string; descriptions: string[] }) => (
   <div className="ml-6">
-    {title ? <strong className="mt-7 block">[{title}]</strong> : null}
+    {title ? <strong className="mt-7 block">{title}</strong> : null}
     <ul className="mt-1">
       {descriptions.map((desc, idx) => (
         <li key={idx} className="my-0">
