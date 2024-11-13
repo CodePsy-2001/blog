@@ -77,6 +77,11 @@ img.next-image {
     margin: 0;
 }
 
+img.badge {
+    margin: 0;
+    display: inline-flex;
+}
+
 .prose a {
     color: #0074de;
 }
