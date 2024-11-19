@@ -6,7 +6,7 @@ export default function CommentsLayout({ children }: PropsWithChildren) {
   return (
     <>
       {children}
-      <AdSense />
+      {/*<AdSense />*/}
       <Utterances />
     </>
   )
