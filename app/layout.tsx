@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         type="font/woff2"
         crossOrigin="anonymous"
       />
-      <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js" />
+      {/*<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js" />*/}
       <meta name="google-adsense-account" content="ca-pub-8136657929424448" />
     </Head>
     <body>
